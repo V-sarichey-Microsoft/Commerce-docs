@@ -1,7 +1,7 @@
-# Functional Specification Document
+﻿# Functional Specification Document
 
 ## Document Information
-- **Project Name:** CASE Temporary Promotion Configurations
+- **Project Name:** CASE Automatic Discounting Configurations
 - **Document Version:** 1.0
 - **Date:** [2025-10-03]
 - **Prepared By:** Sarah Richey
