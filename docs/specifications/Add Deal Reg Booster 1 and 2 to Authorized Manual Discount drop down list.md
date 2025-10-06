@@ -1,76 +1,41 @@
 # Deal Reg Booster 1 and 2 - One Pager
 
 ## Summary
-*A brief 2-3 sentence overview of what this document covers*
+*Deal registration booster for 1% and 2% need to be added to the Authorized Discount drop down list.  New deal reg customers often get an extra 1% or 2% discount, the business would like that reflected on the quote summary pricing*
 
 ---
 
 ## Business Need
 **Problem Statement:**  
-*Clear description of the problem being solved*
+*Currently as a work around, the advocates have to select Deal Registration for authorized manual discount and add it a 2nd time for the extra booster. There should be a DEAL REG BOOSTER option to choose from in the drop down list so they can add 1% OR 2% and have that display in the CASE pricing summary with the Deal Registration discount.*
 
 **Impact:**  
-*Quantifiable business impact and why this matters*
+*Clarity and accuracy the CASE quoting process.*
 
 ---
 
 ## Solution Overview
-*A concise description of the proposed solution (50-75 words)*
+*The UI for this change is to see the Deal Reg Booster in the drop down list and also as a label next to the applied discount on the quote, just like Deal Registration.  *
 
-![Solution Diagram](../images/placeholder_diagram.png)
-*Note: Replace with actual diagram if available*
+![Deal Registration Booster Drop Down](../images/deal_reg_booster_dropdown.jpg)
+
 
 ---
 
 ## Key Features/Components
-- Feature 1: *Brief description*
-- Feature 2: *Brief description*
-- Feature 3: *Brief description*
+- Feature 1: *Add 
+Deal Registration Booster to authorized discount drop down list to select*
+- Feature 2: *Deal Registration Booster Should be part of the discount calculation just like Deal Registration*
+- Feature 3: *The label on the pricing summary of the quote should show Deal Registration Booster*
 
 ---
 
-## Implementation Timeline
-| Milestone | Date | Deliverable |
-|----------|------|-------------|
-| Phase 1 | MM/DD/YYYY | Description |
-| Phase 2 | MM/DD/YYYY | Description |
-| Release | MM/DD/YYYY | Final deployment |
 
----
 
-## Resources Required
-- *Resource 1*
-- *Resource 2*
-- *Resource 3*
 
----
 
-## Success Metrics
-- *Metric 1*
-- *Metric 2*
-- *Metric 3*
 
----
 
-## Stakeholders
-| Name | Role | Responsibility |
-|------|------|---------------|
-| *Name* | *Role* | *Responsibility* |
-| *Name* | *Role* | *Responsibility* |
 
----
-
-## Next Steps
-- *Action item 1*
-- *Action item 2*
-- *Action item 3*
-
----
-
-## Appendix
-*Any additional information, diagrams, or references*
-
----
-
-**Document Owner:** *Your Name*  
+**Document Owner:** *Sarah Richey v-sarichey@microsoft.com*  
 **Last Updated:** October 6, 2025
