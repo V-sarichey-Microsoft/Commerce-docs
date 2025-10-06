@@ -18,20 +18,27 @@
       - UseCase 4 BIDGRID_3
       - UseCase 5 EDU
       - UseCase 6 TEMP_PROMO
-## 1. Introduction
+
+### 1. Introduction
 ### 1.1 Purpose
 This document is a configuration guide for managing the Assisted stacking with discounts
 
 ### 1.2 Document Conventions
-[Discounts in CASE Phase 1: 
+Automatic Discounts in CASE Phase 1: 
     - BASE
-    - Bid Grid tier 1, tier 2, tier 3
+    - BidGrid tier 1, tier 2, tier 3
     - EDU
     - Temp Promo
 
+Manually  applied
+     -Deal Registraiton
+     -Special Pricing
+     -Essential Bundle
+     -Coop
+     -Closed Audience
 
 ## 3. Scope 
-Part 1: Documenting the current pricing rules that impact CASE and how to configure them.
+Part 1: Documenting the current automated pricing rules that impact CASE and how to configure them.
 
 Part 2: Defining how to configure the new temporary promotion for Deal Registration.
 
@@ -42,10 +49,10 @@ Review existing configurations that do not change, then out line the proposed do
 ## 4. PRICING RULE CONFIGURATIONS FOR CASE
 The BASE discount pricing rule is the "driver" for how all other discount pricing rules with the same product ID and Sku ID to calculate in Castles Best price Mprice API.
 
-Each Price Rule is configured to follow the Business stabability rules out line in the BRD document.
+Each Price Rule is configured to follow the Business stacking rules outlined in the BRD document.
 
 Rules of Stacking with Discounts in Assisted (CASE) 
-![Rules of Stacking with Discounts](https://i.stack.imgur.com/Fzh0w.png) 
+![Rules of Stacking with Discounts](../images/stacking_rules.png) 
 ### 4.1 User Story/Use Case 1  - BASE
 - **Title:** [Scenario 1: BASE discount]
 - **Example CPM Price Rule:** [690bdfe7-c451-44bb-8ddf-c9627ea91b6e](https://yourportal.example.com/pricing-rules/690bdfe7-c451-44bb-8ddf-c9627ea91b6e)
