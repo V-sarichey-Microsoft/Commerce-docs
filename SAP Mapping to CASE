@@ -1,0 +1,268 @@
+
+
+**Executive Summary** -  discrepancy between SAP Response.xml aznd CASE Response class="xml"
+/Response
+**Identify Discrepancies** - Detailed breakdown of each difference between SAP and CASE
+
+**Summary and Next Steps**Meaning of Delivery Term in SAP
+In SAP, delivery term refers to the agreed conditions under which goods are delivered from the supplier to the customer. These conditions define responsibilities, costs, and risks during transportation. Delivery terms are closely tied to Incoterms (International Commercial Terms) and shipping instructions. They ensure clarity on who bears freight charges, insurance, and risk at each stage of delivery. [help.sap.com], [tcodesearch.com]
+
+Where Delivery Terms Are Maintained
+
+Vendor Master and Customer Master records.
+Purchasing Info Records.
+Purchase Orders (PO) and Sales Documents.
+At header level or item level in sourcing projects or contracts. [community.sap.com], [community.sap.com]
+
+
+Common Values for Delivery Terms
+Delivery terms typically use Incoterms codes such as:
+
+EXW – Ex Works (buyer bears all costs from seller’s premises).
+FOB – Free On Board (seller delivers to port; buyer handles freight).
+CIF – Cost, Insurance, and Freight (seller covers cost and insurance to destination port).
+DDP – Delivered Duty Paid (seller bears all costs and risks until goods reach buyer).
+
+
+**Descrepency: DeliveryTerm in SAP is DDP and in CASE it is DDU**
+
+    **Meaning of Delivery Term in SAP**
+    In SAP, delivery term refers to the agreed conditions under which goods are delivered from the supplier to the customer. These conditions define responsibilities, costs, and risks during transportation. Delivery terms are closely tied to Incoterms (International Commercial Terms) and shipping instructions. They ensure clarity on who bears freight charges, insurance, and risk at each stage of delivery. [help.sap.com], [tcodesearch.com]
+
+    **Where Delivery Terms Are Maintained**
+
+    Vendor Master and Customer Master records.
+    Purchasing Info Records.
+    Purchase Orders (PO) and Sales Documents.
+    At header level or item level in sourcing projects or contracts. [community.sap.com], [community.sap.com]
+
+    **Common Values for Delivery Terms**
+        Delivery terms typically use Incoterms codes such as:
+
+        EXW – Ex Works (buyer bears all costs from seller’s premises).
+        FOB – Free On Board (seller delivers to port; buyer handles freight).
+        CIF – Cost, Insurance, and Freight (seller covers cost and insurance to destination port).
+        DDP – Delivered Duty Paid (seller bears all costs and risks until goods reach buyer).
+
+**Descrepency: Country in SAP is LU, in CASE it is Luxembourg**
+
+    **How Country Code is Used in SAP**
+    In SAP, country codes are used to identify countries in master data and transactions. SAP uses ISO 3166-1 alpha-2 two-letter country codes (e.g., LU for Luxembourg, US for United States, DE for Germany). These codes are essential for:
+    
+    - Tax determination and compliance
+    - Address validation and formatting
+    - Legal reporting requirements
+    - Currency and language defaults
+    - Shipping and logistics operations
+    - Regional regulatory compliance
+    
+    Country codes are maintained in SAP tables like T005 (Countries) and are used throughout various modules including SD (Sales & Distribution), MM (Materials Management), and FI (Financial Accounting). The standardized ISO codes ensure consistency across international operations and enable proper integration with external systems.
+
+    **SAP Country Codes for EMEA Region**
+    
+   
+    - AT - Austria
+    - BE - Belgium
+    - DK - Denmark
+    - FI - Finland
+    - FR - France
+    - DE - Germany
+    - IE - Ireland
+    - IT - Italy
+    - LU - Luxembourg
+    - NL - Netherlands
+    - NO - Norway
+    - PT - Portugal
+    - ES - Spain
+    - SE - Sweden
+    - CH - Switzerland
+  
+    
+    
+
+    **SAP Country Codes for APAC Region**
+    
+        - JP - Japan
+        - NZ - New Zealand
+        - SG - Singapore
+
+
+**Descrepency: CustomerCode in SAP is 0006047535 vs CASE uses TaxID LU14046119**
+**Discrepancy Note:** CASE appears to use the Tax ID (e.g., LU14046119) as the customer identifier instead of the SAP Customer Code. This creates a mapping challenge as Tax IDs and Customer Codes serve different purposes and may not have a 1:1 relationship.
+
+    **How CustomerCode is Used in SAP**
+    In SAP, the Customer Code (also known as Customer Number or Customer ID) is a unique identifier assigned to each customer in the system. This code is crucial for:
+    
+    - **Unique Identification**: Serves as the primary key to identify and differentiate customers across all SAP modules
+    - **Master Data Management**: Links to customer master records (table KNA1) containing name, address, contact information, and business details
+    - **Transaction Processing**: Used in sales orders, deliveries, invoices, and payment processing
+    - **Credit Management**: Tracks customer credit limits, payment terms, and outstanding balances
+    - **Reporting and Analytics**: Enables customer-specific reporting, sales analysis, and revenue tracking
+    - **Integration**: Acts as the reference key for interfacing with external systems (CRM, e-commerce, tax engines)
+    
+    **Customer Code Structure:**
+    - Typically a 10-digit numeric code (e.g., 0006047535)
+    - Leading zeros are significant and must be maintained
+    - Assigned sequentially or based on organizational numbering schemes
+    - Configured in customer account groups and number ranges
+    
+    **Key SAP Tables:**
+    - KNA1: Customer Master (General Data)
+    - KNB1: Customer Master (Company Code Data)
+    - KNVV: Customer Master (Sales Data)
+    
+    
+
+**Descrepency: ProductClass - SAP uses "DOCKSTATN" vs CASE uses "COMPUTERPERIPHERALS"**
+
+    **How Product Classification Works in SAP**
+    In SAP, product classification isn't stored in a single table called "ProductClass." Instead, SAP uses a **Classification System** with multiple related tables:
+
+
+    **Tax-Related Product Classification:**
+    For tax purposes (like in Vertex integrations), product classifications are often mapped through:
+    - Custom Z-tables or configuration tables
+    - Material master extended fields
+    - Classification characteristics specifically for tax codes
+    
+    **Discrepancy Note:** The difference between SAP's "DOCKSTATN" and CASE's "COMPUTERPERIPHERALS" likely comes from different tax classification schemes:
+    - SAP may be using a custom tax code system or company-specific product codes
+    - CASE might be using a standardized product taxonomy (possibly UNSPSC - United Nations Standard Products and Services Code, or similar industry standard)
+    - This requires mapping between the two classification systems to ensure consistent tax treatment
+
+    **SAP Custom Tax Code vs Standardized Product Taxonomy Mapping**
+
+    | SAP Custom Tax Code | Product Description | Standardized Taxonomy (UNSPSC/Vertex) | Material Number Example |
+    |---------------------|---------------------|---------------------------------------|-------------------------|
+    | DOCKSTATN | Docking Station | COMPUTERPERIPHERALS | 1GK-00004 |
+    | LAPTOP | Laptop Computer | PORTABLECOMPUTERS | - |
+    | TABLET | Tablet Computer | PORTABLECOMPUTERS | - |
+    | DESKTOP | Desktop Computer | DESKTOPCOMPUTERS | - |
+    | MONITOR | Computer Monitor | COMPUTERDISPLAYS | - |
+    | KEYBOARD | Keyboard | COMPUTERINPUTDEVICES | - |
+    | MOUSE | Computer Mouse | COMPUTERINPUTDEVICES | - |
+    | PRINTER | Printer | PRINTINGDEVICES | - |
+    | SCANNER | Scanner | IMAGINGEQUIPMENT | - |
+    | WEBCAM | Web Camera | VIDEOEQUIPMENT | - |
+    | HEADSET | Headset/Headphones | AUDIOEQUIPMENT | - |
+    | SPEAKER | Speakers | AUDIOEQUIPMENT | - |
+    | CABLE | Cables/Adapters | COMPUTERACCESSORIES | - |
+    | STORAGE | External Storage | DATASTORAGEDEVICES | - |
+    | SOFTWARE | Software License | SOFTWARELICENSES | - |
+    | WARRANTY | Extended Warranty | MAINTENANCESERVICES | - |
+
+    **Note:** The actual standardized codes may vary depending on the taxonomy system used (UNSPSC, HS Codes, or Vertex-specific codes). This mapping needs to be confirmed with the Vertex tax code mapping documentation.
+
+**Descrepency: Flexcodes - SAP has several FlexibleCodeFields that CASE does not send**
+
+    **What are FlexibleCodeFields?**
+    FlexibleCodeFields in SAP (particularly in tax engine integrations like Vertex) are custom fields used to pass additional transaction data needed for accurate tax determination. These fields carry business-specific information that may affect tax calculations, exemptions, or reporting requirements.
+
+    **SAP FlexibleCodeFields Present:**
+    ```xml
+    <FlexibleCodeField fieldId="9">Z4FNGD</FlexibleCodeField>
+    <FlexibleCodeField fieldId="15">AJO</FlexibleCodeField>
+    <FlexibleCodeField fieldId="16">ZZOP</FlexibleCodeField>
+    <FlexibleCodeField fieldId="18">HRD</FlexibleCodeField>
+    <FlexibleCodeField fieldId="19">N785</FlexibleCodeField>
+    <FlexibleCodeField fieldId="20">MSS</FlexibleCodeField>
+    <FlexibleCodeField fieldId="21">0I</FlexibleCodeField>
+    <FlexibleCodeField fieldId="24">0006047535</FlexibleCodeField>
+    ```
+
+    **Common FlexibleCodeField Meanings (To Be Confirmed):**
+
+    | Field ID | Value | Likely Purpose | Notes |
+    |----------|-------|----------------|-------|
+    | 9 | Z4FNGD | Product Group / Business Unit / Division Code | Z prefix indicates custom SAP field |
+    | 15 | AJO | Sales Organization / Distribution Channel / Customer Group | Regional or organizational identifier |
+    | 16 | ZZOP | Order Type / Transaction Type / Business Process | ZZ prefix indicates company-specific customization |
+    | 18 | HRD | Hardware indicator / Product Category / Material Type | Product classification for tax purposes |
+    | 19 | N785 | Ship-to Location / Warehouse / Distribution Center | Numeric location identifier |
+    | 20 | MSS | Business Segment / Company Code / Service Type | May indicate managed service or subscription |
+    | 21 | 0I | Transaction Indicator / Order Type flag / Special Processing | Status or type indicator |
+    | 24 | 0006047535 | Customer Number / Bill-to Party / Account ID | Matches Customer Code format; used for customer-specific tax rules |
+
+    **Impact of Missing Flex Codes:**
+    - Tax calculation accuracy may be affected
+    - Business rules dependent on these fields may not execute properly
+    - Reporting and audit trails may be incomplete
+    - Customer-specific exemptions or special handling may not apply
+
+    **How to Find Exact Field Definitions:**
+    1. Check Vertex Configuration documentation
+    2. Review SAP Customizing (Transaction: SPRO → Vertex O Series configuration)
+    3. Consult SAP-to-Vertex interface design document
+    4. Review custom Z-tables that define field ID mappings
+    5. Contact Vertex team for official field mapping documentation
+
+**Cathrine:** Provide Contact Names from Vertex to get the Mapping document from SAP on tax codes.
+**Sarah:** Cross reference why SAP mapping is different to CPM Tax code that is defined by tax SME's for ProdOps.. ie.. "DockSTN" vs "ComputerPheriphials"
+**Ramesh:** Investigate why CASE is not sending all the same flex codes that SAP has.
+
+---
+
+## References and Resources
+
+**UNSPSC (United Nations Standard Products and Services Code)**
+- Official Website: https://www.unspsc.org/
+- Current Version: 24.0 (updated regularly)
+- Access: Complete code set available for purchase or free preview
+- Download Formats: Excel, CSV, XML
+- Relevant Segments:
+  - Segment 43: Information Technology Broadcasting and Telecommunications
+  - Segment 44: Office Equipment and Accessories and Supplies
+  - Segment 46: Defense and Law Enforcement and Security and Safety Equipment
+
+**UNSPSC Structure:**
+- 8-digit hierarchical coding system
+- Format: Segment (2) - Family (2) - Class (2) - Commodity (2)
+- Example: 43.21.15.01 = Notebook computers
+  - 43 = IT, Broadcasting and Telecommunications (Segment)
+  - 21 = Computer Equipment (Family)
+  - 15 = Computers (Class)
+  - 01 = Notebook computers (Commodity)
+
+**Key UNSPSC Codes for Technology Products:**
+- 43.21.15 - Computers (Notebooks, Desktops, Tablets)
+- 43.21.18 - Docking stations
+- 43.21.19 - Computer keyboards or mice
+- 43.21.20 - Computer monitors and displays
+- 43.22.21 - Printers
+- 43.22.26 - Computer speakers
+- 43.20.14 - Hard disk drives
+- 43.23.10 - Operating system software
+- 43.23.15 - Application software
+
+**SAP Documentation Resources**
+- SAP Help Portal: https://help.sap.com
+- Transaction Codes:
+  - MM03 - Display Material Master
+  - VK11/VK13 - Tax condition records
+  - FTXP - Tax code maintenance
+  - CL02/CL03 - Classification maintenance
+  - SE16N - Data Browser for table queries
+
+**SAP Key Tables Reference**
+- T005 - Countries
+- KNA1 - Customer Master (General Data)
+- MARA - Material Master (General Data)
+- AUSP - Characteristic Values
+- INOB - Object Links to Classes
+- KSSK - Object to Class Allocation
+
+**Vertex Tax Documentation**
+- Contact: Catherine (to provide Vertex contact names)
+- Required Documents:
+  - SAP to Vertex tax code mapping
+  - Product classification standards
+  - Tax determination configuration
+
+**Incoterms Reference**
+- Official Site: https://iccwbo.org/resources-for-business/incoterms-rules/
+- Common Terms: EXW, FOB, CIF, DDP, DDU
+
+**ISO Country Codes**
+- ISO 3166-1 alpha-2 standard
+- Reference: https://www.iso.org/iso-3166-country-codes.html
+- Table T005 in SAP contains country code mappings
